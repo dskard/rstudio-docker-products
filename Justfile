@@ -46,7 +46,7 @@ update-rsw-versions:
     workbench/Dockerfile.bionic \
     workbench-for-microsoft-azure-ml/Dockerfile.bionic
   sed {{ sed_vars }} "s/RSW_VERSION:.*/RSW_VERSION: {{ RSW_VERSION }}/g" docker-compose.yml
-  sed {{ sed_vars }} "s/rstudio\/rstudio-workbench:.*/rstudio\/rstudio-workbench:{{ RSC_TAG_SAFE_VERSION }}/g" docker-compose.yml
+  sed {{ sed_vars }} "s/dskard\/rstudio-workbench:.*/dskard\/rstudio-workbench:{{ RSC_TAG_SAFE_VERSION }}/g" docker-compose.yml
   sed {{ sed_vars }} "s/org.opencontainers.image.version='.*'/org.opencontainers.image.version='{{ RSW_VERSION }}'/g" workbench-for-microsoft-azure-ml/Dockerfile.bionic
   sed {{ sed_vars }} "s/^RSW_VERSION := .*/RSW_VERSION := \"{{ RSW_VERSION }}\"/g" \
     r-session-complete/Justfile \
@@ -62,7 +62,7 @@ update-rspm-versions:
     package-manager/.env \
     package-manager/Dockerfile.bionic
   sed {{ sed_vars }} "s/RSPM_VERSION:.*/RSPM_VERSION: {{ RSPM_VERSION }}/g" docker-compose.yml
-  sed {{ sed_vars }} "s/rstudio\/rstudio-package-manager:.*/rstudio\/rstudio-package-manager:{{ RSPM_VERSION }}/g" docker-compose.yml
+  sed {{ sed_vars }} "s/dskard\/rstudio-package-manager:.*/dskard\/rstudio-package-manager:{{ RSPM_VERSION }}/g" docker-compose.yml
   sed {{ sed_vars }} "s/^RSPM_VERSION := .*/RSPM_VERSION := \"{{ RSPM_VERSION }}\"/g" \
     package-manager/Justfile \
     Justfile
@@ -76,7 +76,7 @@ update-rsc-versions:
     connect/Dockerfile.bionic \
     connect-content-init/Dockerfile.bionic
   sed {{ sed_vars }} "s/RSC_VERSION:.*/RSC_VERSION: {{ RSC_VERSION }}/g" docker-compose.yml
-  sed {{ sed_vars }} "s/rstudio\/rstudio-connect:.*/rstudio\/rstudio-connect:{{ RSC_VERSION }}/g" docker-compose.yml
+  sed {{ sed_vars }} "s/dskard\/rstudio-connect:.*/dskard\/rstudio-connect:{{ RSC_VERSION }}/g" docker-compose.yml
   sed {{ sed_vars }} "s/^RSC_VERSION := .*/RSC_VERSION := \"{{ RSC_VERSION }}\"/g" \
     connect/Justfile \
     Justfile

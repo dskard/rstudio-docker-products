@@ -35,22 +35,22 @@ build-release $PRODUCT $OS $VERSION $BRANCH=`git branch --show` $SHA_SHORT=`git 
   fi
 
   docker buildx --builder="{{BUILDX_PATH}}" build --load $BUILDX_ARGS \
-        -t rstudio/${IMAGE_PREFIX}${PRODUCT}:${OS} \
-        -t rstudio/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION} \
-        -t rstudio/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION}--${SHA_SHORT} \
-        -t ghcr.io/rstudio/${IMAGE_PREFIX}${PRODUCT}:${OS} \
-        -t ghcr.io/rstudio/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION} \
-        -t ghcr.io/rstudio/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION}--${SHA_SHORT} \
+        -t dskard/${IMAGE_PREFIX}${PRODUCT}:${OS} \
+        -t dskard/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION} \
+        -t dskard/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION}--${SHA_SHORT} \
+        -t ghcr.io/dskard/${IMAGE_PREFIX}${PRODUCT}:${OS} \
+        -t ghcr.io/dskard/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION} \
+        -t ghcr.io/dskard/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION}--${SHA_SHORT} \
         --build-arg "$SHORT_NAME"_VERSION=$VERSION \
         --build-arg RSW_DOWNLOAD_URL=$RSW_DOWNLOAD_URL \
         --file=./${PRODUCT}/Dockerfile.${OS} ${PRODUCT}
 
-  echo rstudio/${IMAGE_PREFIX}${PRODUCT}:${OS} \
-        rstudio/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION} \
-        rstudio/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION}--${SHA_SHORT} \
-        ghcr.io/rstudio/${IMAGE_PREFIX}${PRODUCT}:${OS} \
-        ghcr.io/rstudio/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION} \
-        ghcr.io/rstudio/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION}--${SHA_SHORT}
+  echo dskard/${IMAGE_PREFIX}${PRODUCT}:${OS} \
+        dskard/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION} \
+        dskard/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION}--${SHA_SHORT} \
+        ghcr.io/dskard/${IMAGE_PREFIX}${PRODUCT}:${OS} \
+        ghcr.io/dskard/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION} \
+        ghcr.io/dskard/${IMAGE_PREFIX}${PRODUCT}:${OS}-${TAG_VERSION}--${SHA_SHORT}
 
 # just BUILDX_PATH=~/.buildx build-preview preview workbench bionic 12.0.11-11
 build-preview $TYPE $PRODUCT $OS $VERSION $BRANCH=`git branch --show`:
@@ -93,19 +93,19 @@ build-preview $TYPE $PRODUCT $OS $VERSION $BRANCH=`git branch --show`:
   fi
 
   docker buildx --builder="{{BUILDX_PATH}}" build --load $BUILDX_ARGS \
-        -t rstudio/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TAG_VERSION} \
-        -t rstudio/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TYPE} \
-        -t ghcr.io/rstudio/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TAG_VERSION} \
-        -t ghcr.io/rstudio/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TYPE} \
+        -t dskard/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TAG_VERSION} \
+        -t dskard/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TYPE} \
+        -t ghcr.io/dskard/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TAG_VERSION} \
+        -t ghcr.io/dskard/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TYPE} \
         --build-arg ${SHORT_NAME}_VERSION=$VERSION \
         --build-arg RSW_DOWNLOAD_URL=$RSW_DOWNLOAD_URL \
         --file=./${PRODUCT}/Dockerfile.${OS} ${PRODUCT}
 
   # These tags are propogated forward to test-images and push-images in builds. It is important that these tags match the build tags above.
-  echo rstudio/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TAG_VERSION} \
-        rstudio/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TYPE} \
-        ghcr.io/rstudio/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TAG_VERSION} \
-        ghcr.io/rstudio/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TYPE}
+  echo dskard/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TAG_VERSION} \
+        dskard/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TYPE} \
+        ghcr.io/dskard/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TAG_VERSION} \
+        ghcr.io/dskard/${IMAGE_PREFIX}${PRODUCT}-preview:${BRANCH_PREFIX}${OS}-${TYPE}
 
 # just push-images tag1 tag2 ...
 push-images +IMAGES:
